@@ -1,0 +1,159 @@
+*{
+    box-sizing: border-box;
+}
+.details-page-container {
+    font-family: 'Nunito', sans-serif;
+    flex: 1;
+    padding-top: 32px;
+    padding-right: 40px;
+    padding-bottom: 32px;
+    padding-left: 40px;
+    gap: 24px;
+    background: #F3F6FA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-header-row {
+    width: 100%;
+    height: 82px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 24px;
+    padding-left: 24px;
+    border-radius: 8px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px 0px #0000000A;
+}
+
+.page-title {
+    color: #19202D;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 24px;
+}
+
+.edit-details-btn {
+    width: 152px;
+    height: 52px;
+    background: #EAF9FF;
+    padding-top: 8px;
+    padding-right: 12px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    gap: 10px;
+    border-radius: 56px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.edit-details-btn:hover {
+    background-color: #1EB4F0;
+}
+
+.edit-details-btn:active {
+    transform: scale(0.98);
+}
+
+.edit-details-btn img {
+    width: 36px;
+    height: 36px;
+}
+
+.edit-details-btn span {
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 16px;
+    color: #19202D;
+}
+
+.details-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 243px;
+    padding: 28px 32px;
+    gap: 24px;
+    border-radius: 8px;
+    background: #FFFFFF;
+    box-shadow: 0px 3px 6px 0px #9D9D9D29;
+}
+
+.row-one {
+    width: 100%;
+    height: 60px;
+    gap: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.data-group {
+    width: 180px;
+    height: 60px;
+    gap: 6px;
+    display: flex;
+    flex-direction: column;
+}
+
+.data-label {
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    color: #8991A1;
+}
+
+.data-value {
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 18px;
+    color: #19202D;
+}
+
+.status-badge {
+    padding: 4px 16px;
+    border-radius: 21px;
+    display: inline-block;
+    width: fit-content;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 18px;
+}
+
+.probation {
+    background: #FFF8D7;
+    color: #AA8A00;
+}
+
+.row-two {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 40px;
+    border-top: 1px solid #E5E8ED;
+    width: 100%;
+    padding-top: 28px;
+}
+
+.address-group {
+    width: 400px;
+    gap: 6px;
+}
+
+.data-address {
+    font-family: Nunito;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 18px;
+    color: #19202D;
+    text-wrap: wrap;
+    margin: 0;
+}

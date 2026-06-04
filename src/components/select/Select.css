@@ -1,0 +1,43 @@
+.form-group select{
+    background-color: #FAFAFA;
+    height: 44px;
+    width: 100%;
+    border-radius: 4px;
+    border-width: 1px;
+    border-color: #C6CDD9;
+    border-style: solid;
+    padding-right: 14px;
+    padding-left: 14px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #19202D;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    background-image: url('../../assets/drop_down_arrow.png');
+    background-repeat: no-repeat;
+    background-position: calc(100% - 16px) center; 
+    background-size: 6.28px 3.84px; 
+
+}
+
+select:invalid,
+select:has(option[value=""]:checked) {
+    color: #8991A1; 
+}
+
+select option {
+    color: #8991A1;
+    background-color: #FFFFFF;
+}
+
+select option[disabled] {
+    color: #8991A1;
+}

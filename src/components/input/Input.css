@@ -1,0 +1,14 @@
+.input-box{
+    width: 460px;
+    height: 45px;
+    border-width: 1px;
+    border-color: #B4B7BD;
+    border-radius: 3px;
+    padding: 0 15px;
+}
+.input-box::placeholder {
+  color: #B4B7BD;
+  font-family: 'Nunito';
+  font-weight: bold;
+  font-size: 16px;
+}

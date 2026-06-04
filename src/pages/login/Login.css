@@ -1,0 +1,89 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: white;
+}
+
+main{
+  display: flex;
+  justify-content: column;
+  height: 100%;
+  width:100%;
+  margin: 0;
+}
+
+.left-main-box{
+    width: 870px;
+    padding: 24px;
+}
+
+.left-inner-box{
+    background-color: #E6F7FD;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-graphics{
+  width: 620px;
+  height: 620px;    
+  border-radius: 50%;
+}
+
+.right-main-box{
+    flex:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-inner-box{
+    height:333.5px;
+    width: 460.39px;
+    display:flex;
+    flex-direction: column;
+}
+
+.company-logo{
+    width: 203.86px;
+    height: 45px;
+}
+
+form{
+    display:flex;
+    flex-direction: column;
+    margin-top: 40px;
+    gap: 25px;
+    width:100%;
+}    
+
+form > div:first-child {
+    position: relative;
+    width: 100%;
+}
+
+.username-label{
+    font-family: 'Nunito';
+    color: #1EB4F0;
+    font-size: 14px;
+    font-weight: 700;
+
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background-color: white; 
+    padding: 0 5px;
+    z-index: 1;
+}
+
+.login-button{
+    width:460px;
+    height:45px;
+    font-family: 'Nunito';
+    color: white;
+    background-color: #1EB4F0;
+    border-radius: 3px;
+}
