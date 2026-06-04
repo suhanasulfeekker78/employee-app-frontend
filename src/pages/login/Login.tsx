@@ -1,38 +1,62 @@
-import Input from "../../components/input/Input";
+// import Input from "../../components/input/Input";
 import "./Login.css";
 import KeyvalueLogo from "../../assets/keyvalue.png" 
 import LoginGraphics from "../../assets/login_graphics.png"
+import { useState } from "react";
 
 function Login() {
+  const [email,setEmail]=useState("")
+  const [pw,setPassword]=useState("")
+  const emailError=email && !email.includes('@')?"Email must contain @" : null;
+  const pswdError= (pw && pw.length <8 )? "Password must be 8 letters": null;
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+      e.preventDefault();
+  };
+
   return (
     <>
-        <main>
-          <section className="left-main-box">
-            <div className="left-inner-box">
+      <main>
+        <section className="left-main-box">
+          <div className="left-inner-box">
+            <img
+              src={LoginGraphics}
+              alt="Employees graphics"
+              className="login-graphics"
+            ></img>
+          </div>
+        </section>
+        <section className="right-main-box">
+          <div className="right-inner-box">
+            <div>
               <img
-                src={LoginGraphics} alt="Employees graphics" className="login-graphics"
+                src={KeyvalueLogo}
+                alt="KeyValue Logo"
+                className="company-logo"
               ></img>
             </div>
-          </section>
-          <section className="right-main-box">
-            <div className="right-inner-box">
+            <form onSubmit={handleSubmit}>
+              {/* <Input type="text" id="username" placeholder="" name="username" label="Username" labelClass="username-label"/>
+                <Input type="password" id="password" name="password" placeholder="Password"/> */}
               <div>
-                <img
-                  src={KeyvalueLogo} alt="KeyValue Logo" className="company-logo"
-                ></img>
+                  <label htmlFor="username" className="username-label">Username</label>
+                  <input type="text" id="username" className="input-box" name="username" value={email} 
+                  onChange={(e)=>setEmail(e.target.value)}/>
+                  {emailError && <p className="error">{emailError}</p>}
               </div>
-              <form onSubmit={(e) => e.preventDefault()}>
-                <Input type="text" id="username" placeholder="" name="username" label="Username" labelClass="username-label"/>
-                <Input type="password" id="password" name="password" placeholder="Password"/>
-                <input
-                  type="submit"
-                  value="Login"
-                  className="login-button"
-                ></input>
-              </form>
-            </div>
-          </section>
-        </main>
+              <div>
+                  <input type="password" id="password" name="password" className="input-box" placeholder="Password" 
+                  value={pw} onChange={(e)=>setPassword(e.target.value)}/>
+                  {pswdError && <p className="error">{pswdError}</p>}
+              </div>
+              <input
+                type="submit"
+                value="Login"
+                className="login-button"
+              ></input>
+            </form>
+          </div>
+        </section>
+      </main>
     </>
   );
 }

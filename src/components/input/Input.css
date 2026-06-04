@@ -1,10 +1,9 @@
 .input-box{
     width: 460px;
     height: 45px;
-    border-width: 1px;
-    border-color: #B4B7BD;
-    border-radius: 3px;
+    border-radius: 8px;
     padding: 0 15px;
+    border: 1px solid  #B4B7BD,
 }
 .input-box::placeholder {
   color: #B4B7BD;

@@ -17,6 +17,13 @@ function CreateEmployee() {
     { value: "active", label: "Active" },
     { value: "inactive", label: "Inactive" }
   ];
+
+  const onSubmit=(e:React.SubmitEvent<HTMLFormElement>)=>{
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    console.log(formData)
+  }
+
   return (
     <>
       <Layout>
@@ -25,7 +32,7 @@ function CreateEmployee() {
             <h1>Create Employee</h1>
           </div>
           <div className="form-container">
-            <form className="employee-form" onSubmit={(e) => e.preventDefault()}>
+            <form className="employee-form" onSubmit={onSubmit}>
               <Input
                 type="text"
                 id="employeeName"

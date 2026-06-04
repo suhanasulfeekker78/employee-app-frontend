@@ -85,5 +85,30 @@ form > div:first-child {
     font-family: 'Nunito';
     color: white;
     background-color: #1EB4F0;
-    border-radius: 3px;
+    border-radius: 8px;
+    border: none;
+}
+
+/* change after session */
+
+.input-box{
+    width: 460px;
+    height: 45px;
+    border-radius: 8px;
+    padding: 0 15px;
+    border: 1px solid  #B4B7BD,
+}
+.input-box::placeholder {
+  color: #B4B7BD;
+  font-family: 'Nunito';
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.error{
+    color: #ff4949;
+    font-size: 10px;
+    font-weight: normal;
+    margin:0;
+    padding-top:5px;
 }

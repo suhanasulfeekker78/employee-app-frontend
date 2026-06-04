@@ -1,0 +1,36 @@
+.data-group {
+    width: 180px;
+    height: 60px;
+    gap: 6px;
+    display: flex;
+    flex-direction: column;
+}
+
+.data-label {
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    color: #8991A1;
+}
+
+.data-value {
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 18px;
+    color: #19202D;
+}
+
+.address-group {
+    width: 400px;
+    gap: 6px;
+}
+
+.data-address {
+    font-family: Nunito;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 18px;
+    color: #19202D;
+    text-wrap: wrap;
+    margin: 0;
+}

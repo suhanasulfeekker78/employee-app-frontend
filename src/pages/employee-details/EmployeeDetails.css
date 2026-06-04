@@ -1,4 +1,6 @@
-*{
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 .details-page-container {
@@ -93,28 +95,6 @@
     justify-content: flex-start;
 }
 
-.data-group {
-    width: 180px;
-    height: 60px;
-    gap: 6px;
-    display: flex;
-    flex-direction: column;
-}
-
-.data-label {
-    font-weight: 400;
-    font-style: Regular;
-    font-size: 16px;
-    color: #8991A1;
-}
-
-.data-value {
-    font-weight: 600;
-    font-style: SemiBold;
-    font-size: 18px;
-    color: #19202D;
-}
-
 .status-badge {
     padding: 4px 16px;
     border-radius: 21px;
@@ -141,19 +121,4 @@
     border-top: 1px solid #E5E8ED;
     width: 100%;
     padding-top: 28px;
-}
-
-.address-group {
-    width: 400px;
-    gap: 6px;
-}
-
-.data-address {
-    font-family: Nunito;
-    font-weight: 600;
-    font-style: SemiBold;
-    font-size: 18px;
-    color: #19202D;
-    text-wrap: wrap;
-    margin: 0;
 }

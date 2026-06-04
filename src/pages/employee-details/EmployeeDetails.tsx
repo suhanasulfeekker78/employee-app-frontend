@@ -1,8 +1,18 @@
 import "./EmployeeDetails.css";
 import Layout from "../../components/layout/Layout";
 import EditIcon from "../../assets/edit_button.png";
+import DetailGroup from "../../components/detailgroup/DetailGroup";
 
 function EmployeeDetails() {
+  const mockEmployeeData = {
+    name: "Vishal M",
+    joiningDate: "12.04.2021",
+    experience: "2 Yrs",
+    role: "Full Stack",
+    status: "Probation",
+    address: "No:C-9, T.V.K Industrial\nEstate, Kerala 600032",
+    employeeId: "E34656767",
+  };
   return (
     <>
       <Layout>
@@ -19,52 +29,22 @@ function EmployeeDetails() {
           <div className="details-card">
             
             <div className="detail-row row-one">
-              <div className="data-group">
-                <span className="data-label">Employee Name</span>
-                <span className="data-value">Vishal M</span>
-              </div>
-              
-              <div className="data-group">
-                <span className="data-label">Joining Date</span>
-                <span className="data-value">12.04.2021</span>
-              </div>
-              
-              <div className="data-group">
-                <span className="data-label">Experience</span>
-                <span className="data-value">2 Yrs</span>
-              </div>
-              
-              <div className="data-group">
-                <span className="data-label">Role</span>
-                <span className="data-value">Full Stack</span>
-              </div>
+              <DetailGroup label="Employee Name" value={mockEmployeeData.name}/>
+              <DetailGroup label="Joining Date" value={mockEmployeeData.joiningDate}/>
+              <DetailGroup label="Experience" value={mockEmployeeData.experience}/>
+              <DetailGroup label="Role" value={mockEmployeeData.role}/>
 
               <div className="data-group">
                 <span className="data-label">Status</span>
                 <span className="status-badge probation">Probation</span>
               </div>
-              
-              <div className="data-group">
-                <span className="data-label">Experience</span>
-                <span className="data-value">5 Years</span>
-              </div>
 
+              <DetailGroup label="Experience" value={mockEmployeeData.experience}/>
             </div>
 
             <div className="detail-row row-two">
-
-              <div className="data-group address-group">
-                <span className="data-label">Address</span>
-                <p className="data-address">
-                  No:C-9, T.V.K Industrial<br />
-                  Estate, Kerala 600032
-                </p>
-              </div>
-
-              <div className="data-group">
-                <span className="data-label">Employee ID</span>
-                <span className="data-value">E34656767</span>
-              </div>
+              <DetailGroup label="Address" value={mockEmployeeData.address} isAddress={true} />
+              <DetailGroup label="Employee ID" value={mockEmployeeData.employeeId}/>
             </div>
 
           </div>
