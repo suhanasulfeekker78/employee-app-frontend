@@ -3,6 +3,7 @@ import "./Login.css";
 import KeyvalueLogo from "../../assets/keyvalue.png" 
 import LoginGraphics from "../../assets/login_graphics.png"
 import { useState } from "react";
+import { Link } from "react-router";
 
 function Login() {
   const [email,setEmail]=useState("")
@@ -15,7 +16,7 @@ function Login() {
 
   return (
     <>
-      <main>
+      <main className="login-main">
         <section className="left-main-box">
           <div className="left-inner-box">
             <img
@@ -48,11 +49,13 @@ function Login() {
                   value={pw} onChange={(e)=>setPassword(e.target.value)}/>
                   {pswdError && <p className="error">{pswdError}</p>}
               </div>
-              <input
+              <Link to="/dashboard">
+                <input
                 type="submit"
                 value="Login"
                 className="login-button"
               ></input>
+              </Link>
             </form>
           </div>
         </section>

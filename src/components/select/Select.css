@@ -1,4 +1,4 @@
-.form-group select{
+.form-group .select-element{
     background-color: #FAFAFA;
     height: 44px;
     width: 100%;
@@ -13,7 +13,7 @@
     color: #19202D;
 }
 
-select {
+.select-element{
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;

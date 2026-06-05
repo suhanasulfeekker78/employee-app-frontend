@@ -1,0 +1,92 @@
+.employee-row {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 24px;
+    padding-left: 24px;
+    border-radius: 8px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px 0px #0000000A;
+}
+
+
+.cell {
+  font-family: Nunito, 'sans-serif';
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    color: #19202D;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.cell-name {
+    width: 180px;
+}
+
+.cell-id, .cell-date{
+    width: 140px;
+}
+
+.cell-role, .cell-status, .cell-experience{
+    width: 130px
+}
+
+.cell-action{
+    width:100px;
+}
+
+.el-status-badge {
+    width: 90px;
+    height: 26px;
+    border-radius: 13px;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 16px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.probation {
+    background: #FFF8D7;
+    color: #AA8A00;
+}
+
+.active{
+    background: #DAF6E1;
+    color: #00812F
+}
+
+.inactive{
+    background: #FFE2E2;
+    color: #DC3232
+}
+
+.button-group1{
+    width: 61.18895721435547px;
+    height: 16.656452178955078px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    width: 15.071986198425293px;
+    height: 16.652999877929688px;
+}
+
+.edit-btn{
+    background: transparent;
+    border: none;
+    width: 16.6519718170166px;
+    height: 16.656452178955078px;
+}

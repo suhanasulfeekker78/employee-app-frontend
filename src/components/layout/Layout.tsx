@@ -1,14 +1,15 @@
 import "./Layout.css";
 import Header from "../header/Header";
 import Sidebar from "../sidebar/Sidebar";
-import type { ReactNode } from "react";
-const Layout = ({children}: {children:ReactNode}) => {
+import { Outlet } from "react-router";
+const Layout = () => {
   return (
     <>
         <Header/>
         <main className="main-container">
           <Sidebar/>
-          {children}
+          {/* {children} */}
+          <Outlet/>
         </main>
     </>
   );

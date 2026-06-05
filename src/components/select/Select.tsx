@@ -31,7 +31,7 @@ const Select = ({
       <label htmlFor={id} className={labelClass}>
         {label}
       </label>
-      <select id={id} name={name} required={isRequired} defaultValue="">
+      <select className="select-element" id={id} name={name} required={isRequired} defaultValue="">
         <option value="" disabled>
           {placeholder}
         </option>

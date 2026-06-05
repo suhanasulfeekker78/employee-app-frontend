@@ -6,7 +6,7 @@ body{
     background-color: white;
 }
 
-main{
+.login-main{
   display: flex;
   justify-content: column;
   height: 100%;

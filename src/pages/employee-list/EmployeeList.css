@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Nunito, 'sans-serif';
+}
+
+.employee-list-main-container{
+    flex:1;
+    padding: 32px 40px;
+    gap: 24px;
+    background:#FAFAFA;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-row{
+    width: 100%;
+    height: 82px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 24px;
+    padding-left: 24px;
+    border-radius: 8px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px 0px #0000000A;
+}
+
+.header-row h1{
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 24px;
+    color: #19202D
+}
+
+.header-right-group{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    width: 411px;
+    height: 52px;
+}
+
+.filter-group{
+    width: 203px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 12px;
+    padding-left: 12px;
+    border-radius: 4px;
+}
+
+.filter-group span {
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    color: #8991A1;
+}
+
+.custom-status-select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 90px;
+  height: 26px;
+  background-image: url('../../assets/drop_down_arrow.png');
+  background-repeat: no-repeat;
+  background-position: calc(100% - 8px) center;
+  font-weight: 600;
+  font-size: 16px;
+  padding-left: 6px;
+  padding-right: 24px;
+  display: inline-flex;
+  align-items: center;  
+  gap: 8px;
+  border-radius: 13px;
+  border: none;
+  background: #EAF9FF;
+}
+
+.create-employee-group {
+    width: 196px;
+    height: 52px;
+    padding: 8px 12px 8px 8px;
+    gap: 10px;
+    border-radius: 56px;
+    background: #EAF9FF;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border:0;
+}
+
+.create-employee-group img{
+    width: 36px;
+    height: 36px;
+}
+
+.create-employee-group span {
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 16px;
+    color: #19202D;
+}
+
+.employee-table{
+    width: 100%;
+    gap: 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.table-header{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 24px;
+    padding-left: 24px;
+    border-radius: 8px;
+    background: #EAF9FF;
+}
+
+
+.table-header h2 {
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 16px;
+    color: #19202D;
+}
+
+.col{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.col1{
+    width:180px;
+}
+
+.col2,.col3{
+    width:140px;
+}
+
+.col4,.col5,.col6{
+    width:130px
+}
+
+.col7{
+    width:100px;
+}
+
+.table-body{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap:16px;
+}
+
+.help-desk-icon{
+    position: absolute;
+    box-shadow: 0px 4px 15.4px 0px #00000040;
+    top: 847px;
+    left: 1720px;
+    width: 68px;
+    height: 68px;
+    background-color:#1EB4F0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.help-desk-icon img{
+    width:34px;
+    height:34px;
+}
