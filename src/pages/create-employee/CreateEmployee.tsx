@@ -4,9 +4,37 @@ import Input from "../../components/input/Input";
 import Select from "../../components/select/Select";
 import AttachVector from "../../assets/attach_files_vector.png";
 import { useState } from "react";
+import { useSearchParams } from "react-router";
+import employees from "../../constants/data"
 
 function CreateEmployee() {
-  const [dateType, setDateType] = useState<"text" | "date">("text");
+  const [searchParams] = useSearchParams();
+  
+  const employeeIdFromUrl = searchParams.get("id");
+  
+  const editableEmployee = employeeIdFromUrl 
+    ? employees.find(emp => emp.id == employeeIdFromUrl) 
+    : null;
+    
+  const isEditing = !!editableEmployee;
+
+  const [formData, setFormData] = useState({
+    employeeName: editableEmployee?.name || "",
+    employeeID: editableEmployee?.employeeId || "",
+    joinDate: editableEmployee?.joiningDate || "",
+    role: editableEmployee?.role?.toLowerCase() || "",
+    status: editableEmployee?.status?.toLowerCase() || "",
+    experience: editableEmployee?.experience || "",
+    address: editableEmployee?.address || "",
+    city: editableEmployee?.city || "",
+    country: editableEmployee?.country|| "",
+    postalCode: editableEmployee?.postalCode|| ""
+  });
+
+  const [dateType, setDateType] = useState<"text" | "date">(
+    editableEmployee?.joiningDate ? "date" : "text"
+  );
+
   const roleOptions = [
     { value: "developer", label: "Developer" },
     { value: "qa", label: "QA" },
@@ -14,20 +42,31 @@ function CreateEmployee() {
   ];
   const statusOptions = [
     { value: "active", label: "Active" },
-    { value: "inactive", label: "Inactive" }
+    { value: "inactive", label: "Inactive" },
+    {value: "probation", label: "Probation"}
   ];
 
-  const onSubmit=(e:React.SubmitEvent<HTMLFormElement>)=>{
-    e.preventDefault()
-    const formData = new FormData(e.target)
-    console.log(formData)
-  }
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const onSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    if (isEditing) {
+      console.log("Edited employee data", formData);
+    } else {
+      console.log("Created new employee", formData);
+    }
+  };
+
 
   return (
     <>
       <section className="content-section">
         <div className="page-title">
-          <h1>Create Employee</h1>
+          <h1>{isEditing ? "Edit Employee" : "Create Employee"}</h1>
         </div>
         <div className="form-container">
           <form className="employee-form" onSubmit={onSubmit}>
@@ -39,6 +78,8 @@ function CreateEmployee() {
               label="Employee Name"
               containerClass="form-group"
               isRequired={true}
+              value={formData.employeeName}
+              onChange={handleInputChange}
             />
 
             <Input
@@ -49,6 +90,9 @@ function CreateEmployee() {
               label="Employee ID"
               containerClass="form-group"
               isRequired={true}
+              value={formData.employeeID}
+              onChange={handleInputChange}
+              disabled={isEditing}
             />
 
             <div className="form-group">
@@ -59,6 +103,8 @@ function CreateEmployee() {
                 name="joinDate"
                 placeholder="Joining Date"
                 required
+                value={formData.joinDate}
+                onChange={handleInputChange}
                 onFocus={(e) => {
                   setDateType("date");
                   setTimeout(() => e.target.showPicker?.(), 0);
@@ -77,6 +123,8 @@ function CreateEmployee() {
               options={roleOptions}
               containerClass="form-group"
               isRequired={true}
+              value={formData.role}
+              onChange={handleInputChange}
             />
 
             <Select
@@ -87,6 +135,8 @@ function CreateEmployee() {
               options={statusOptions}
               containerClass="form-group"
               isRequired={true}
+              value={formData.status}
+              onChange={handleInputChange}
             />
 
             <Input
@@ -96,6 +146,8 @@ function CreateEmployee() {
               placeholder="Experience"
               label="Experience"
               containerClass="form-group"
+              value={formData.experience}
+              onChange={handleInputChange}
             />
 
             <div className="form-group address-group">
@@ -105,6 +157,8 @@ function CreateEmployee() {
                 id="address"
                 name="address"
                 placeholder="Address"
+                value={formData.address}
+                onChange={handleInputChange}
               ></input>
               <div className="address-row">
                 <input
@@ -112,12 +166,16 @@ function CreateEmployee() {
                   id="city"
                   name="city"
                   placeholder="City"
+                  value={formData.city}
+                  onChange={handleInputChange}
                 ></input>
                 <input
                   type="text"
                   id="country"
                   name="country"
                   placeholder="Country"
+                  value={formData.country}
+                  onChange={handleInputChange}
                 ></input>
               </div>
               <input
@@ -126,6 +184,8 @@ function CreateEmployee() {
                 name="postalCode"
                 placeholder="Postal code"
                 className="small-field"
+                value={formData.postalCode}
+                onChange={handleInputChange}
               ></input>
             </div>
 
@@ -142,7 +202,7 @@ function CreateEmployee() {
 
             <div className="button-group">
               <button type="submit" className="create-btn">
-                Create
+                {isEditing ? "Save" : "Create"}
               </button>
               <button type="button" className="cancel-btn">
                 Cancel

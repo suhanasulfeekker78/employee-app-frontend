@@ -1,4 +1,7 @@
 .chat-widget-container {
+    position: absolute;
+    bottom: 50px;
+    right: 80px;
     width: 400px;
     height: 389px; 
     background: #FFFFFF;
@@ -26,8 +29,8 @@
     gap: 16px;
 }
 
-.help-desk-icon{
-    width: 34px;
+.chatbot-icon{
+    width: 54px;
     height:34px;
     padding-left:20px;
 }
@@ -65,6 +68,8 @@
 .user-sent .message-bubble {
     max-width: 352px;
     padding-right: 23px;
+    padding-top: 15px;
+    padding-bottom: 16px;
     padding-left: 24px;
     margin-right: 31px;
     background: #ECECEC;
@@ -84,6 +89,8 @@
     max-width: 352px;
     padding-right: 20px;
     padding-left:17px;
+    padding-top:15px;
+    padding-bottom:16px;
     background: #DEF6FF;
     border-top-left-radius: 24px;
     border-top-right-radius: 24px;

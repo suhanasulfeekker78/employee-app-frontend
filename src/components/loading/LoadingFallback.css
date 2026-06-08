@@ -1,0 +1,17 @@
+.skeleton {
+  background: #e0e0e0;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.title-skeleton { width: 250px; height: 32px; }
+.button-skeleton { width: 120px; height: 40px; border-radius: 8px; }
+.field-skeleton { width: 150px; height: 48px; margin: 10px 0; }
+.address-skeleton { width: 300px; height: 48px; margin: 10px 0; }

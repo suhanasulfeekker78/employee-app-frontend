@@ -2,20 +2,26 @@ import "./EmployeeDetails.css";
 import EditIcon from "../../assets/edit_button.png";
 import DetailGroup from "../../components/detailgroup/DetailGroup";
 import employees from "../../constants/data";
-import { useParams } from "react-router";
+import { useParams, useNavigate} from "react-router";
 
 function EmployeeDetails() {
   const {id}=useParams();
+  const navigate=useNavigate();
   const employee=employees.find(employee=>employee.id==id)
   if (!employee) {
     return <div><h2>Employee not found</h2></div>;
   }
+
+  const handleEditClick = () => {
+    navigate(`/create?id=${employee.id}`);
+  };
+
   return (
     <>
       <div className="details-page-container">
         <div className="page-header-row">
           <h1 className="page-title-1">Employee details</h1>
-          <button className="edit-details-btn">
+          <button className="edit-details-btn" onClick={handleEditClick}>
             <img src={EditIcon} alt="Edit Icon" />
             <span>Edit details</span>
           </button>

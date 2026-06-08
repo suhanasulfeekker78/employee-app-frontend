@@ -3,8 +3,14 @@ import HelpIcon from "../../assets/help_desk_icon.png"
 import CreateIcon from "../../assets/create_icon.png"
 import EmployeeRow from "../../components/employee-row/EmployeeRow";
 import employees from "../../constants/data"
+import { useNavigate } from "react-router";
+import { useState } from "react";
+import Chatbot from "../../components/chatbot/Chatbot";
+import DeletePopup from "../../components/delete/DeletePopup";
 
 function EmployeeList() {
+  const [isChatbot,setChatbot]=useState(false);
+  const navigate=useNavigate();
   interface TableColumn {
     title: string;
     class: string;
@@ -18,13 +24,23 @@ function EmployeeList() {
   { title: "Experience",    class: "col col6" },
   { title: "Action",        class: "col col7" }
 ];
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const handleEdit = (id: string) => {
-    console.log("Edit employee with ID:", id);
+    navigate(`/create?id=${id}`);
   };
 
   const handleDelete = (id: string) => {
-    console.log("Delete employee with ID:", id);
+    setSelectedId(id);
+    setIsDeleteOpen(true);
+  };
+
+  const confirmDelete = () => {
+    if (selectedId) {
+      console.log(`Deleting employee with ID: ${selectedId}`);
+    }
+    setIsDeleteOpen(false); 
   };
   return (
     <>
@@ -43,7 +59,10 @@ function EmployeeList() {
                 </select>
               </div>
             </div>
-            <button className="create-employee-group">
+            <button
+              className="create-employee-group"
+              onClick={() => navigate("/create")}
+            >
               <img src={CreateIcon} alt="create-icon" />
               <span>Create Employee</span>
             </button>
@@ -52,7 +71,9 @@ function EmployeeList() {
         <div className="employee-table">
           <div className="table-header">
             {tableHeaders.map((column) => (
-              <div className={column.class}><h2>{column.title}</h2></div>
+              <div className={column.class}>
+                <h2>{column.title}</h2>
+              </div>
             ))}
           </div>
           <div className="table-body">
@@ -66,9 +87,21 @@ function EmployeeList() {
           </div>
         </div>
       </section>
-      <div className="help-desk-icon">
-        <img src={HelpIcon} alt="help-desk" />
-      </div>
+      {isChatbot ? (
+        <Chatbot onClose={() => setChatbot(false)} />
+      ) : (
+        <div className="help-desk-icon" onClick={() => setChatbot(true)}>
+          <img src={HelpIcon} alt="help-desk" />
+        </div>
+      )}
+      {isDeleteOpen && (
+        <div className="delete-overlay">
+          <DeletePopup
+            onConfirm={confirmDelete}
+            onCancel={() => setIsDeleteOpen(false)}
+          />
+        </div>
+      )}
     </>
   );
 }

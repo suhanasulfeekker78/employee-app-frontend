@@ -24,7 +24,7 @@ const EmployeeRow: React.FC<EmployeeRowProps> = ({ employee, onEdit, onDelete })
   const statusClassName = `el-status-badge ${employee.status.toLowerCase()}`;
 
   const handleClick=()=>{
-    navigate(`/dashboard/details/${employee.id}`)
+    navigate(`/details/${employee.id}`)
   }
 
   return (
@@ -39,10 +39,10 @@ const EmployeeRow: React.FC<EmployeeRowProps> = ({ employee, onEdit, onDelete })
       <div className="cell cell-experience">{employee.experience}</div>
       <div className="cell cell-action">
         <div className="button-group1">
-          <button className="delete-btn" onClick={() => onDelete(employee.id)}>
+          <button className="delete-btn" onClick={(e) =>{e.stopPropagation(); onDelete(employee.id)}}>
             <img src={DeleteIcon} alt="Delete" />
           </button>
-          <button className="edit-btn" onClick={() => onEdit(employee.id)}>
+          <button className="edit-btn" onClick={(e) => {e.stopPropagation(); onEdit(employee.id)}}>
             <img src={EditIcon} alt="Edit" />
           </button>
         </div>

@@ -64,24 +64,32 @@
 }
 
 .custom-status-select{
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
-  width: 90px;
+  width: auto;
   height: 26px;
-  background-image: url('../../assets/drop_down_arrow.png');
-  background-repeat: no-repeat;
-  background-position: calc(100% - 8px) center;
-  font-weight: 600;
-  font-size: 16px;
-  padding-left: 6px;
-  padding-right: 24px;
-  display: inline-flex;
-  align-items: center;  
+  min-width: 95px;
   gap: 8px;
   border-radius: 13px;
-  border: none;
   background: #EAF9FF;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 16px;
+  color: #19202D;
+  background-image: url('../../assets/drop_down_arrow.png');
+  background-repeat: no-repeat;
+  background-position: calc(100% - 12px) center;
+  padding-left: 12px;
+  padding-right: 25px;
+  border: none;
+}
+
+.custom-status-select option {
+    color: #19202D;
+    background-color: #EAF9FF;
+}
+
+.custom-status-select:focus {
+  outline: none;
 }
 
 .create-employee-group {
@@ -170,11 +178,19 @@
     gap:16px;
 }
 
+.table-body > :nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.table-body > :nth-child(even) {
+  background-color: #fbfcfe;
+}
+
 .help-desk-icon{
     position: absolute;
     box-shadow: 0px 4px 15.4px 0px #00000040;
-    top: 847px;
-    left: 1720px;
+    bottom: 50px;
+    right: 80px;
     width: 68px;
     height: 68px;
     background-color:#1EB4F0;
@@ -187,4 +203,13 @@
 .help-desk-icon img{
     width:34px;
     height:34px;
+}
+
+.delete-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
 }

@@ -2,16 +2,20 @@
 import "./Login.css";
 import KeyvalueLogo from "../../assets/keyvalue.png" 
 import LoginGraphics from "../../assets/login_graphics.png"
-import { useState } from "react";
-import { Link } from "react-router";
+import { useState} from "react";
+import { useNavigate } from "react-router";
 
 function Login() {
+  const navigate=useNavigate();
   const [email,setEmail]=useState("")
   const [pw,setPassword]=useState("")
   const emailError=email && !email.includes('@')?"Email must contain @" : null;
   const pswdError= (pw && pw.length <8 )? "Password must be 8 letters": null;
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
       e.preventDefault();
+      if (!emailError && !pswdError){
+        navigate("/dashboard");
+      }
   };
 
   return (
@@ -35,27 +39,40 @@ function Login() {
                 className="company-logo"
               ></img>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form className="login-form" onSubmit={handleSubmit}>
               {/* <Input type="text" id="username" placeholder="" name="username" label="Username" labelClass="username-label"/>
                 <Input type="password" id="password" name="password" placeholder="Password"/> */}
               <div>
-                  <label htmlFor="username" className="username-label">Username</label>
-                  <input type="text" id="username" className="input-box" name="username" value={email} 
-                  onChange={(e)=>setEmail(e.target.value)}/>
-                  {emailError && <p className="error">{emailError}</p>}
+                <label htmlFor="username" className="username-label">
+                  Username
+                </label>
+                <input
+                  type="text"
+                  id="username"
+                  className="input-box"
+                  name="username"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                {emailError && <p className="error">{emailError}</p>}
               </div>
               <div>
-                  <input type="password" id="password" name="password" className="input-box" placeholder="Password" 
-                  value={pw} onChange={(e)=>setPassword(e.target.value)}/>
-                  {pswdError && <p className="error">{pswdError}</p>}
-              </div>
-              <Link to="/dashboard">
                 <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  className="input-box"
+                  placeholder="Password"
+                  value={pw}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                {pswdError && <p className="error">{pswdError}</p>}
+              </div>
+              <input
                 type="submit"
                 value="Login"
                 className="login-button"
               ></input>
-              </Link>
             </form>
           </div>
         </section>

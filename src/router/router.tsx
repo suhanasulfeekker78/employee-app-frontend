@@ -1,16 +1,20 @@
 import { createBrowserRouter } from "react-router";
-import EmployeeList from "../pages/employee-list/EmployeeList";
-import CreateEmployee from "../pages/create-employee/CreateEmployee";
-import EmployeeDetails from "../pages/employee-details/EmployeeDetails";
 import Login from "../pages/login/Login";
 import Layout from "../components/layout/Layout"
 import NotFound from "../pages/NotFound";
 import ErrorHandler from "../pages/ErrorHandler"
 import ProtectedRoute from "../pages/ProtectedRoute";
+import React, { Suspense } from "react";
+import LoadingFallback from "../components/loading/LoadingFallback";
+import ErrorBoundary from "../components/ErrorBoundary";
+
+const EmployeeDetails = React.lazy(()=>import("../pages/employee-details/EmployeeDetails"));
+const CreateEmployee = React.lazy(()=>import("../pages/create-employee/CreateEmployee"));
+const EmployeeList = React.lazy(()=>import("../pages/employee-list/EmployeeList"))
 
 const Router = createBrowserRouter([
   {
-    path: "/login",
+    path: "/",
     element: <Login />,
   },
   {
@@ -22,8 +26,27 @@ const Router = createBrowserRouter([
         element: <Layout />,
         children: [
           { index: true, element: <EmployeeList /> },
-          { path: "create", element: <CreateEmployee /> },
-          { path: "details/:id", element: <EmployeeDetails /> },
+        ],
+      },
+    ],
+    errorElement: <ErrorHandler />,
+  },
+  {
+    path: "/details/:id",
+    element: <Layout />,
+    children: [
+      { index: true, element: <ErrorBoundary><Suspense fallback={<LoadingFallback/>}><EmployeeDetails /></Suspense></ErrorBoundary> }
+    ],
+  },
+  {
+    path: "/create",
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: "",
+        element: <Layout />,
+        children: [
+          { index: true, element: <CreateEmployee /> },
         ],
       },
     ],

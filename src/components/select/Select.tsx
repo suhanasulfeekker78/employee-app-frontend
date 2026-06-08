@@ -14,6 +14,8 @@ interface SelectProps {
   containerClass?: string;
   labelClass?: string;
   isRequired?: boolean;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const Select = ({
@@ -25,13 +27,15 @@ const Select = ({
   containerClass = "form-group",
   labelClass,
   isRequired = false,
+  value,
+  onChange,
 }: SelectProps) => {
   return (
     <div className={containerClass}>
       <label htmlFor={id} className={labelClass}>
         {label}
       </label>
-      <select className="select-element" id={id} name={name} required={isRequired} defaultValue="">
+      <select className="select-element" id={id} name={name} required={isRequired} value={value} onChange={onChange}>
         <option value="" disabled>
           {placeholder}
         </option>

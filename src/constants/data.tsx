@@ -1,4 +1,4 @@
-export type EmployeeRole = "Full Stack" | "UI Engineer" | "DevOps" | "QA Engineer" | "Project Manager";
+export type EmployeeRole = "Developer" | "QA" | "Manager";
 export type EmployeeStatus = "Active" | "Probation" | "Inactive";
 
 export interface Employee {
@@ -10,7 +10,10 @@ export interface Employee {
   status: EmployeeStatus;
   experience: string;
   address: string;
-  company: string;       
+  company: string;  
+  city?: string;
+  country?: string;
+  postalCode?:string;     
 }
 
 const employees: readonly Employee[] = [
@@ -20,7 +23,7 @@ const employees: readonly Employee[] = [
     name: "Vishal M", 
     company: "Lazada", 
     joiningDate: "2021-04-12", 
-    role: "Full Stack", 
+    role: "Manager", 
     status: "Probation", 
     experience: "5 Years",
     address: "123 Main St, Kochi, Kerala, India"
@@ -31,7 +34,7 @@ const employees: readonly Employee[] = [
     name: "Susan Kurian", 
     company: "XYZ", 
     joiningDate: "2021-04-12", 
-    role: "UI Engineer", 
+    role: "Developer", 
     status: "Probation", 
     experience: "7 Years",
     address: "456 MG Road, Bangalore, Karnataka, India"
@@ -42,7 +45,7 @@ const employees: readonly Employee[] = [
     name: "Yugesh", 
     company: "XYZ", 
     joiningDate: "2021-04-12", 
-    role: "DevOps", 
+    role: "Manager", 
     status: "Active", 
     experience: "6 Years",
     address: "789 Hitech City, Hyderabad, Telangana, India"
@@ -53,7 +56,7 @@ const employees: readonly Employee[] = [
     name: "Midhun", 
     company: "Lazada", 
     joiningDate: "2021-04-12", 
-    role: "Full Stack", 
+    role: "QA", 
     status: "Active", 
     experience: "5 Years",
     address: "321 Panampilly Nagar, Kochi, Kerala, India"
@@ -64,7 +67,7 @@ const employees: readonly Employee[] = [
     name: "Abhijith", 
     company: "XYZ", 
     joiningDate: "2021-04-12", 
-    role: "UI Engineer", 
+    role: "Developer", 
     status: "Inactive", 
     experience: "7 Years",
     address: "654 Marine Drive, Mumbai, Maharashtra, India"

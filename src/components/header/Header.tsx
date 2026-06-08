@@ -4,7 +4,7 @@ import KeyvalueLogo from "../../assets/keyvalue.png"
 const Header = () => {
   return (
     <>
-      <header className="header">
+      <header className="main-header">
         <img
           src={KeyvalueLogo}
           alt="Keyvalue Logo"

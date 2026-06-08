@@ -2,13 +2,17 @@ import "./Chatbot.css";
 import HelpDeskIcon from "../../assets/help_desk_bubble.png";
 import SendVector from "../../assets/send_vector.png";
 
-const Chatbot = () => {
+interface ChatbotProps {
+  onClose: () => void;
+}
+
+const Chatbot = ({onClose}:ChatbotProps) => {
   return (
     <div className="chat-widget-container">
 
       <header className="chat-header">
         <div className="header-content">
-          <div className="help-desk-icon">
+          <div className="chatbot-icon" onClick={onClose}>
             <img src={HelpDeskIcon} alt="Help Desk Icon" />
           </div>
           <span className="header-title">Help Desk</span>
