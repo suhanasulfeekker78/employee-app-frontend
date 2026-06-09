@@ -1,38 +1,37 @@
-export type EmployeeRole = "Developer" | "QA" | "Manager";
-export type EmployeeStatus = "Active" | "Probation" | "Inactive";
+// export type EmployeeRole = "Developer" | "QA" | "Manager";
+// export type EmployeeStatus = "Active" | "Probation" | "Inactive";
 
 export interface Employee {
   id: string;           
   employeeId: string;    
   name: string;
   joiningDate: string;  
-  role: EmployeeRole;
-  status: EmployeeStatus;
+  role: string;
+  status: string;
   experience: string;
   address: string;
-  company: string;  
   city?: string;
   country?: string;
-  postalCode?:string;     
+  postalCode?:string;
+  idProof?: string;     
 }
 
-const employees: readonly Employee[] = [
+const employees: Employee[] = [
   { 
     id: "1",
     employeeId: "EMP-2021-01",
     name: "Vishal M", 
-    company: "Lazada", 
     joiningDate: "2021-04-12", 
     role: "Manager", 
     status: "Probation", 
     experience: "5 Years",
-    address: "123 Main St, Kochi, Kerala, India"
+    address: "123 Main St, Kochi, Kerala, India",
+    idProof: "www.google.com"
   },
   { 
     id: "2",
     employeeId: "EMP-2021-02",
     name: "Susan Kurian", 
-    company: "XYZ", 
     joiningDate: "2021-04-12", 
     role: "Developer", 
     status: "Probation", 
@@ -43,7 +42,6 @@ const employees: readonly Employee[] = [
     id: "3",
     employeeId: "EMP-2021-03",
     name: "Yugesh", 
-    company: "XYZ", 
     joiningDate: "2021-04-12", 
     role: "Manager", 
     status: "Active", 
@@ -54,7 +52,6 @@ const employees: readonly Employee[] = [
     id: "4",
     employeeId: "EMP-2021-04",
     name: "Midhun", 
-    company: "Lazada", 
     joiningDate: "2021-04-12", 
     role: "QA", 
     status: "Active", 
@@ -65,13 +62,12 @@ const employees: readonly Employee[] = [
     id: "5",
     employeeId: "EMP-2021-05",
     name: "Abhijith", 
-    company: "XYZ", 
     joiningDate: "2021-04-12", 
     role: "Developer", 
     status: "Inactive", 
     experience: "7 Years",
     address: "654 Marine Drive, Mumbai, Maharashtra, India"
   },
-] as const;
+];
 
 export default employees;

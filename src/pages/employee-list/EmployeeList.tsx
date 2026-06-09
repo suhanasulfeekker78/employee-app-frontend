@@ -7,8 +7,17 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import Chatbot from "../../components/chatbot/Chatbot";
 import DeletePopup from "../../components/delete/DeletePopup";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store/store";
+
 
 function EmployeeList() {
+  const employeeState=useSelector(
+    (state: RootState) => state.employee
+  );
+
+  console.log("Employee state",employeeState.employees);
+
   const [isChatbot,setChatbot]=useState(false);
   const navigate=useNavigate();
   interface TableColumn {

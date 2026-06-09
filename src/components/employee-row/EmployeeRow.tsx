@@ -9,7 +9,7 @@ interface Employee {
   id: string;
   joiningDate: string;
   role: string;
-  status: "Probation" | "Active" | "Inactive";
+  status: string;
   experience: string;
 }
 

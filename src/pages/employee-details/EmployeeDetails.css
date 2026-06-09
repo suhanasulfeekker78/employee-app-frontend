@@ -95,6 +95,21 @@
     justify-content: flex-start;
 }
 
+.data-group {
+    width: 180px;
+    height: 60px;
+    gap: 6px;
+    display: flex;
+    flex-direction: column;
+}
+
+.data-label {
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    color: #8991A1;
+}
+
 .status-badge {
     padding: 4px 16px;
     border-radius: 21px;
@@ -121,4 +136,28 @@
     border-top: 1px solid #E5E8ED;
     width: 100%;
     padding-top: 28px;
+}
+
+.view-id-proof-group {
+    width: 148px;
+    height: 28px;
+    gap: 6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.view-id-proof-group img{
+    height: 24px;
+    width: 24px;
+}
+
+.view-id-proof-group a {
+    font-family: Nunito, 'sans-serif';
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 16px;
+    text-decoration: none;
+    color: #1EB4F0;
 }

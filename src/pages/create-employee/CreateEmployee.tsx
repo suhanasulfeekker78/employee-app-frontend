@@ -1,15 +1,32 @@
 import "./CreateEmployee.css";
-
 import Input from "../../components/input/Input";
 import Select from "../../components/select/Select";
 import AttachVector from "../../assets/attach_files_vector.png";
 import { useState } from "react";
-import { useSearchParams } from "react-router";
-import employees from "../../constants/data"
+import { useNavigate, useSearchParams } from "react-router";
+import employees, { type Employee } from "../../constants/data";
+import UploadModal from "../../components/upload/UploadModal";
+import { useDispatch} from "react-redux";
+import { addEmployeeActionCreator} from "../../store/employee/employeeReducer";
 
 function CreateEmployee() {
+  const roleOptions = [
+    { value: "developer", label: "Developer" },
+    { value: "qa", label: "QA" },
+    { value: "manager", label: "Manager" }
+  ];
+
+  const statusOptions = [
+    { value: "active", label: "Active" },
+    { value: "inactive", label: "Inactive" },
+    {value: "probation", label: "Probation"}
+  ];
+
   const [searchParams] = useSearchParams();
-  
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+
   const employeeIdFromUrl = searchParams.get("id");
   
   const editableEmployee = employeeIdFromUrl 
@@ -18,33 +35,37 @@ function CreateEmployee() {
     
   const isEditing = !!editableEmployee;
 
-  const [formData, setFormData] = useState({
-    employeeName: editableEmployee?.name || "",
-    employeeID: editableEmployee?.employeeId || "",
-    joinDate: editableEmployee?.joiningDate || "",
+  const [formData, setFormData] = useState <Employee>({
+    id: editableEmployee?.id || "",
+    name: editableEmployee?.name || "",
+    employeeId: editableEmployee?.employeeId || "",
+    joiningDate: editableEmployee?.joiningDate || "",
     role: editableEmployee?.role?.toLowerCase() || "",
     status: editableEmployee?.status?.toLowerCase() || "",
     experience: editableEmployee?.experience || "",
     address: editableEmployee?.address || "",
     city: editableEmployee?.city || "",
     country: editableEmployee?.country|| "",
-    postalCode: editableEmployee?.postalCode|| ""
+    postalCode: editableEmployee?.postalCode|| "",
+    idProof: editableEmployee?.idProof||""
   });
 
   const [dateType, setDateType] = useState<"text" | "date">(
     editableEmployee?.joiningDate ? "date" : "text"
   );
 
-  const roleOptions = [
-    { value: "developer", label: "Developer" },
-    { value: "qa", label: "QA" },
-    { value: "manager", label: "Manager" }
-  ];
-  const statusOptions = [
-    { value: "active", label: "Active" },
-    { value: "inactive", label: "Inactive" },
-    {value: "probation", label: "Probation"}
-  ];
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [uploadedFile, setUploadedFile] = useState <File|string|undefined>(editableEmployee?.idProof ? editableEmployee.idProof : undefined);
+
+  const handleFileUploaded = (file: File) => {
+    setUploadedFile(file);
+    setIsModalOpen(false);
+  };
+
+  const handleRemoveFile = (e: React.MouseEvent) => {
+    e.stopPropagation(); 
+    setUploadedFile(undefined);
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -57,7 +78,8 @@ function CreateEmployee() {
     if (isEditing) {
       console.log("Edited employee data", formData);
     } else {
-      console.log("Created new employee", formData);
+      dispatch(addEmployeeActionCreator(formData));
+      navigate("/dashboard");
     }
   };
 
@@ -73,24 +95,24 @@ function CreateEmployee() {
             <Input
               type="text"
               id="employeeName"
-              name="employeeName"
+              name="name"
               placeholder="Employee Name"
               label="Employee Name"
               containerClass="form-group"
               isRequired={true}
-              value={formData.employeeName}
+              value={formData.name}
               onChange={handleInputChange}
             />
 
             <Input
               type="text"
               id="employeeID"
-              name="employeeID"
+              name="employeeId"
               placeholder="Employee ID"
               label="Employee ID"
               containerClass="form-group"
               isRequired={true}
-              value={formData.employeeID}
+              value={formData.employeeId}
               onChange={handleInputChange}
               disabled={isEditing}
             />
@@ -100,10 +122,10 @@ function CreateEmployee() {
               <input
                 type={dateType}
                 id="joinDate"
-                name="joinDate"
+                name="joiningDate"
                 placeholder="Joining Date"
                 required
-                value={formData.joinDate}
+                value={formData.joiningDate}
                 onChange={handleInputChange}
                 onFocus={(e) => {
                   setDateType("date");
@@ -190,15 +212,44 @@ function CreateEmployee() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="IDProof">Upload ID Proof</label>
-              <div className="custom-file-upload">
-                <input type="file" id="IDProof" name="IDProof"></input>
-                <label htmlFor="IDProof" className="upload-label">
-                  <img src={AttachVector} alt="Attach File Icon"></img>
-                  <span>Attach files</span>
-                </label>
+              <label>Upload ID Proof</label>
+              <div
+                className="custom-file-upload"
+                onClick={() => !uploadedFile && setIsModalOpen(true)}
+              >
+                {/* <input type="file" id="IDProof" name="IDProof"></input> */}
+                <div className="upload-label">
+                  <div className="left-file-chip-group">
+                    {uploadedFile && (
+                      <div className="file-chip">
+                        <span>{typeof uploadedFile === 'string' ? uploadedFile : uploadedFile.name}</span>
+                        <button
+                          type="button"
+                          className="remove-file-btn"
+                          onClick={handleRemoveFile}
+                        >
+                          ×
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="right-attach-file-group">
+                    <img src={AttachVector} alt="Attach File Icon"></img>
+                    <span>Attach files</span>
+                  </div>
+                </div>
               </div>
             </div>
+
+            {isModalOpen && (
+              <div className="upload-overlay">
+                <UploadModal
+                  onClose={() => setIsModalOpen(false)}
+                  onUpload={handleFileUploaded}
+                />
+              </div>
+            )}
 
             <div className="button-group">
               <button type="submit" className="create-btn">

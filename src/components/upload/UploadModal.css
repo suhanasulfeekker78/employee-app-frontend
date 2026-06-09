@@ -1,0 +1,141 @@
+.upload-proof-container{
+    width: 608px;
+    height: 414px;
+    gap: 24px;
+    border-radius: 16px;
+    padding: 18px 24px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px 0px #0000000A;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    font-family: Nunito, 'sans-serif';
+}
+
+.upload-proof-header{
+    width: 560px;
+    height: 27px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.upload-proof-header span {
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 20px;
+    color: #000000;
+    width: 124px;
+    height: 27px;
+}
+
+.upload-proof-header img{
+    width: 24px;
+    height: 24px;
+}
+
+.upload-middle-container {
+    width: 560px;
+    height: 253px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 24px;
+    padding-top: 29px;
+    padding-bottom: 29px;
+    border: 1px dashed #183072;
+}
+
+.file-drag-drop {
+    height: 97.0001220703125px;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.file-drag-drop img {
+    width: 85.90933990478516px;
+    height: 62.00007247924805px;
+}
+
+.file-drag-drop span {
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 20px;
+    color: #03AEEE;
+}
+
+.or-span {
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 14px;
+    color: #183072;
+}
+
+.upload-file-bottom-group {
+    width: 114;
+    height: 24;
+    gap: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.upload-file-bottom-group span {
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 16px;
+    color: #03AEEE;
+}
+
+.upload-file-bottom-group img{
+    width:24px;
+    height: 24px;
+}
+
+.upload-button-group {
+    width: 560px;
+    height: 50px;
+    gap: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.upload-cancel-button {
+    width: 276px;
+    height: 50px;
+    gap: 8px;
+    border-radius: 8px;
+    border: 1px solid #63667A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 16px;
+    color: #63667A;
+    background-color: #ffffff;
+}
+
+.upload-confirm-button {
+    width: 276px;
+    height: 50px;
+    gap: 8px;
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #03AEEE;
+}

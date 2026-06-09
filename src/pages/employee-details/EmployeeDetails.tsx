@@ -3,6 +3,7 @@ import EditIcon from "../../assets/edit_button.png";
 import DetailGroup from "../../components/detailgroup/DetailGroup";
 import employees from "../../constants/data";
 import { useParams, useNavigate} from "react-router";
+import FileIcon from "../../assets/small-file-icon.png"
 
 function EmployeeDetails() {
   const {id}=useParams();
@@ -11,7 +12,7 @@ function EmployeeDetails() {
   if (!employee) {
     return <div><h2>Employee not found</h2></div>;
   }
-
+  const idProof = employee.idProof;
   const handleEditClick = () => {
     navigate(`/create?id=${employee.id}`);
   };
@@ -30,25 +31,18 @@ function EmployeeDetails() {
         <div className="details-card">
           <div className="detail-row row-one">
             <DetailGroup label="Employee Name" value={employee.name} />
-            <DetailGroup
-              label="Joining Date"
-              value={employee.joiningDate}
-            />
-            <DetailGroup
-              label="Experience"
-              value={employee.experience}
-            />
+            <DetailGroup label="Joining Date" value={employee.joiningDate} />
+            <DetailGroup label="Experience" value={employee.experience} />
             <DetailGroup label="Role" value={employee.role} />
 
             <div className="data-group">
               <span className="data-label">Status</span>
-              <span className={`status-badge ${employee.status.toLowerCase()}`}>{employee.status}</span>
+              <span className={`status-badge ${employee.status.toLowerCase()}`}>
+                {employee.status}
+              </span>
             </div>
 
-            <DetailGroup
-              label="Experience"
-              value={employee.experience}
-            />
+            <DetailGroup label="Experience" value={employee.experience} />
           </div>
 
           <div className="detail-row row-two">
@@ -57,10 +51,22 @@ function EmployeeDetails() {
               value={employee.address}
               isAddress={true}
             />
-            <DetailGroup
-              label="Employee ID"
-              value={employee.employeeId}
-            />
+            {idProof && (
+              <div className="data-group">
+                <span className="data-label">Employee ID Proof</span>
+                <div className="view-id-proof-group">
+                  <img src={FileIcon} alt="file icon" />
+                  <a
+                    href={idProof.startsWith('http') ? idProof : `https://${idProof}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Document
+                  </a>
+                </div>
+              </div>
+            )}
+            <DetailGroup label="Employee ID" value={employee.employeeId} />
           </div>
         </div>
       </div>
