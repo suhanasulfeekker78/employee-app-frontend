@@ -2,7 +2,7 @@
 // export type EmployeeStatus = "Active" | "Probation" | "Inactive";
 
 export interface Employee {
-  id: string;           
+  id: number;           
   employeeId: string;    
   name: string;
   joiningDate: string;  
@@ -18,7 +18,7 @@ export interface Employee {
 
 const employees: Employee[] = [
   { 
-    id: "1",
+    id: 1,
     employeeId: "EMP-2021-01",
     name: "Vishal M", 
     joiningDate: "2021-04-12", 
@@ -29,7 +29,7 @@ const employees: Employee[] = [
     idProof: "www.google.com"
   },
   { 
-    id: "2",
+    id: 2,
     employeeId: "EMP-2021-02",
     name: "Susan Kurian", 
     joiningDate: "2021-04-12", 
@@ -39,7 +39,7 @@ const employees: Employee[] = [
     address: "456 MG Road, Bangalore, Karnataka, India"
   },
   { 
-    id: "3",
+    id: 3,
     employeeId: "EMP-2021-03",
     name: "Yugesh", 
     joiningDate: "2021-04-12", 
@@ -49,7 +49,7 @@ const employees: Employee[] = [
     address: "789 Hitech City, Hyderabad, Telangana, India"
   },
   { 
-    id: "4",
+    id: 4,
     employeeId: "EMP-2021-04",
     name: "Midhun", 
     joiningDate: "2021-04-12", 
@@ -59,7 +59,7 @@ const employees: Employee[] = [
     address: "321 Panampilly Nagar, Kochi, Kerala, India"
   },
   { 
-    id: "5",
+    id: 5,
     employeeId: "EMP-2021-05",
     name: "Abhijith", 
     joiningDate: "2021-04-12", 

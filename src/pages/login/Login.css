@@ -112,3 +112,11 @@ body{
     margin:0;
     padding-top:5px;
 }
+
+.login-error-message{
+    color: #ff4949;
+    font-size: 10px;
+    font-weight: normal;
+    margin:0;
+    padding-top:5px;
+}

@@ -6,7 +6,8 @@ import { useNavigate } from "react-router";
 
 interface Employee {
   name: string;
-  id: string;
+  id: number;
+  employeeId: string;
   joiningDate: string;
   role: string;
   status: string;
@@ -15,8 +16,8 @@ interface Employee {
 
 interface EmployeeRowProps {
   employee: Employee;
-  onEdit: (id: string) => void;
-  onDelete: (id: string) => void;
+  onEdit: (id: number) => void;
+  onDelete: (id: number) => void;
 }
 
 const EmployeeRow: React.FC<EmployeeRowProps> = ({ employee, onEdit, onDelete }) => {
@@ -30,7 +31,7 @@ const EmployeeRow: React.FC<EmployeeRowProps> = ({ employee, onEdit, onDelete })
   return (
     <div className="employee-row" onClick={handleClick}>
       <div className="cell cell-name">{employee.name}</div>
-      <div className="cell cell-id">{employee.id}</div>
+      <div className="cell cell-id">{employee.employeeId}</div>
       <div className="cell cell-date">{employee.joiningDate}</div>
       <div className="cell cell-role">{employee.role}</div>
       <div className="cell cell-status">

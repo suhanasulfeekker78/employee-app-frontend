@@ -4,17 +4,29 @@ import KeyvalueLogo from "../../assets/keyvalue.png"
 import LoginGraphics from "../../assets/login_graphics.png"
 import { useState} from "react";
 import { useNavigate } from "react-router";
+import { useLoginMutation } from "../../api-service/auth/login.api";
 
 function Login() {
+  const [login,{isLoading}] = useLoginMutation();
+  const [error, setError] = useState("");
   const navigate=useNavigate();
   const [email,setEmail]=useState("")
   const [pw,setPassword]=useState("")
   const emailError=email && !email.includes('@')?"Email must contain @" : null;
-  const pswdError= (pw && pw.length <8 )? "Password must be 8 letters": null;
-  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+  const pswdError= (pw && pw.length <7 )? "Password must be 8 letters": null;
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
       e.preventDefault();
-      if (!emailError && !pswdError){
-        navigate("/dashboard");
+      if (!emailError && !pswdError) {
+        login({ username: email, password: pw })
+          .unwrap()
+          .then((response) => {
+            localStorage.setItem("token", response.access_token);
+            localStorage.setItem("refresh_token", response.refresh_token);
+            navigate("/dashboard");
+          })
+          .catch((error) => {
+            setError(error.data.message);
+          });
       }
   };
 
@@ -72,8 +84,10 @@ function Login() {
                 type="submit"
                 value="Login"
                 className="login-button"
-              ></input>
+                disabled={isLoading}
+              />
             </form>
+            <span className="login-error-message">{error}</span>
           </div>
         </section>
       </main>
@@ -82,3 +96,4 @@ function Login() {
 }
 
 export default Login;
+

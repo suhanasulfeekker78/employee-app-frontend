@@ -2,21 +2,18 @@ import "./EmployeeList.css"
 import HelpIcon from "../../assets/help_desk_icon.png"
 import CreateIcon from "../../assets/create_icon.png"
 import EmployeeRow from "../../components/employee-row/EmployeeRow";
-import employees from "../../constants/data"
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import Chatbot from "../../components/chatbot/Chatbot";
 import DeletePopup from "../../components/delete/DeletePopup";
-import { useSelector } from "react-redux";
-import type { RootState } from "../../store/store";
+import type { Employee } from "../../constants/data";
+
+import { useAppSelector} from "../../store/store";
 
 
 function EmployeeList() {
-  const employeeState=useSelector(
-    (state: RootState) => state.employee
-  );
-
-  console.log("Employee state",employeeState.employees);
+  const employeeState=useAppSelector((state) => state.employee)
+  console.log(employeeState.employees)
 
   const [isChatbot,setChatbot]=useState(false);
   const navigate=useNavigate();
@@ -34,13 +31,13 @@ function EmployeeList() {
   { title: "Action",        class: "col col7" }
 ];
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<number | null>(null);
 
-  const handleEdit = (id: string) => {
+  const handleEdit = (id: number) => {
     navigate(`/create?id=${id}`);
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = (id: number) => {
     setSelectedId(id);
     setIsDeleteOpen(true);
   };
@@ -86,7 +83,7 @@ function EmployeeList() {
             ))}
           </div>
           <div className="table-body">
-            {employees.map((employee) => (
+            {employeeState.employees.map((employee:Employee) => (
               <EmployeeRow
                 employee={employee}
                 onEdit={handleEdit}

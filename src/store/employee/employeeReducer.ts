@@ -1,44 +1,26 @@
-import employees from "../../constants/data";
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { Employee } from "../../constants/data";
-
-export const EMPLOYEE_ACTIONS_TYPES={
-    ADD: "employee/ADD",
-    DELETE: "employee/DELETE",
-    UPDATE: "employee/UPDATE",
-} as const;
-
-export const addEmployeeActionCreator = (employee: Employee) =>{
-    return{
-        type: EMPLOYEE_ACTIONS_TYPES.ADD,
-        payload: employee
-    };
-};
+import employees from "../../constants/data";
 
 interface EmployeeState{
     employees: Employee[];
 }
 
-// type EmployeeAction={
-//     type: string ;
-//     payload: Employee;
-// }
+const initialState: EmployeeState = {
+  employees: employees,
+};
 
-const InitialState: EmployeeState ={
-    employees: employees,
-}
+export const employeeSlice = createSlice({
+  name: 'employee',
+  initialState,
+  reducers: {
+    addEmployee: (state, action: PayloadAction<Employee>) => {
+      action.payload.id=6;
+      state.employees.push(action.payload);
+    },
+  },
+});
 
-export const reducer = (
-    state: EmployeeState = InitialState,
-    action: any,
-): EmployeeState => {
-    switch (action.type){
-        case EMPLOYEE_ACTIONS_TYPES.ADD:{
-            const record=action.payload;
-            return{...state,employees:[...state.employees, record]};
-        }
-        default:
-            return state ;
-    }
-}
+export const { addEmployee } = employeeSlice.actions
 
-export default reducer;
+export default employeeSlice.reducer;

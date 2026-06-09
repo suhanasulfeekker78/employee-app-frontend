@@ -8,7 +8,7 @@ import FileIcon from "../../assets/small-file-icon.png"
 function EmployeeDetails() {
   const {id}=useParams();
   const navigate=useNavigate();
-  const employee=employees.find(employee=>employee.id==id)
+  const employee=employees.find(employee=>employee.id==Number(id))
   if (!employee) {
     return <div><h2>Employee not found</h2></div>;
   }

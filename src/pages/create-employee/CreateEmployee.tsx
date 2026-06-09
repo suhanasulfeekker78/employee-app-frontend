@@ -6,37 +6,36 @@ import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import employees, { type Employee } from "../../constants/data";
 import UploadModal from "../../components/upload/UploadModal";
-import { useDispatch} from "react-redux";
-import { addEmployeeActionCreator} from "../../store/employee/employeeReducer";
+import { addEmployee} from "../../store/employee/employeeReducer";
+import { useAppDispatch } from "../../store/store";
 
 function CreateEmployee() {
   const roleOptions = [
-    { value: "developer", label: "Developer" },
-    { value: "qa", label: "QA" },
-    { value: "manager", label: "Manager" }
+    { value: "Developer", label: "Developer" },
+    { value: "QA", label: "QA" },
+    { value: "Manager", label: "Manager" }
   ];
 
   const statusOptions = [
-    { value: "active", label: "Active" },
-    { value: "inactive", label: "Inactive" },
-    {value: "probation", label: "Probation"}
+    { value: "Active", label: "Active" },
+    { value: "Inactive", label: "Inactive" },
+    {value: "Probation", label: "Probation"}
   ];
 
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
+  const dispatch = useAppDispatch();
 
   const employeeIdFromUrl = searchParams.get("id");
   
   const editableEmployee = employeeIdFromUrl 
-    ? employees.find(emp => emp.id == employeeIdFromUrl) 
+    ? employees.find(emp => emp.id == Number(employeeIdFromUrl)) 
     : null;
     
   const isEditing = !!editableEmployee;
 
   const [formData, setFormData] = useState <Employee>({
-    id: editableEmployee?.id || "",
+    id: editableEmployee?.id || 0,
     name: editableEmployee?.name || "",
     employeeId: editableEmployee?.employeeId || "",
     joiningDate: editableEmployee?.joiningDate || "",
@@ -78,7 +77,7 @@ function CreateEmployee() {
     if (isEditing) {
       console.log("Edited employee data", formData);
     } else {
-      dispatch(addEmployeeActionCreator(formData));
+      dispatch(addEmployee(formData));
       navigate("/dashboard");
     }
   };
