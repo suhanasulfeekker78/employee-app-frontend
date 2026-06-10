@@ -1,20 +1,31 @@
 import "./EmployeeDetails.css";
 import EditIcon from "../../assets/edit_button.png";
 import DetailGroup from "../../components/detailgroup/DetailGroup";
-import employees from "../../constants/data";
 import { useParams, useNavigate} from "react-router";
 import FileIcon from "../../assets/small-file-icon.png"
+import { useGetEmployeeByIdQuery } from "../../api-service/employees/employees.api";
 
 function EmployeeDetails() {
   const {id}=useParams();
   const navigate=useNavigate();
-  const employee=employees.find(employee=>employee.id==Number(id))
-  if (!employee) {
-    return <div><h2>Employee not found</h2></div>;
+  const { data, isLoading } = useGetEmployeeByIdQuery(id as string);
+  if (isLoading) {
+    return <div className="loading-container">Loading employee details...</div>;
   }
-  const idProof = employee.idProof;
+  if (!data) {
+    return <div className="error-container">Employee not found.</div>;
+  }
+  const idProof = data?.idProof;
+  const addressParts = [
+    data.line1,
+    data.city,
+    data.country,
+    data.postalCode,
+  ];
+
+  const address = addressParts.filter(Boolean).join(", ");
   const handleEditClick = () => {
-    navigate(`/create?id=${employee.id}`);
+    navigate(`/create?id=${data.id}`);
   };
 
   return (
@@ -30,25 +41,25 @@ function EmployeeDetails() {
 
         <div className="details-card">
           <div className="detail-row row-one">
-            <DetailGroup label="Employee Name" value={employee.name} />
-            <DetailGroup label="Joining Date" value={employee.joiningDate} />
-            <DetailGroup label="Experience" value={employee.experience} />
-            <DetailGroup label="Role" value={employee.role} />
+            <DetailGroup label="Employee Name" value={data.name} />
+            <DetailGroup label="Joining Date" value={data.joiningDate} />
+            <DetailGroup label="Experience" value={data.experience} />
+            <DetailGroup label="Role" value={data.role} />
 
             <div className="data-group">
               <span className="data-label">Status</span>
-              <span className={`status-badge ${employee.status.toLowerCase()}`}>
-                {employee.status}
+              <span className={`status-badge ${data.status.toLowerCase()}`}>
+                {data.status}
               </span>
             </div>
 
-            <DetailGroup label="Experience" value={employee.experience} />
+            <DetailGroup label="Experience" value={data.experience} />
           </div>
 
           <div className="detail-row row-two">
             <DetailGroup
               label="Address"
-              value={employee.address}
+              value={address}
               isAddress={true}
             />
             {idProof && (
@@ -66,7 +77,7 @@ function EmployeeDetails() {
                 </div>
               </div>
             )}
-            <DetailGroup label="Employee ID" value={employee.employeeId} />
+            <DetailGroup label="Email ID" value={data.email} />
           </div>
         </div>
       </div>

@@ -4,16 +4,21 @@ import Select from "../../components/select/Select";
 import AttachVector from "../../assets/attach_files_vector.png";
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
-import employees, { type Employee } from "../../constants/data";
 import UploadModal from "../../components/upload/UploadModal";
-import { addEmployee} from "../../store/employee/employeeReducer";
-import { useAppDispatch } from "../../store/store";
+import { useCreateEmployeeMutation , useUpdateEmployeeMutation, useGetEmployeeByIdQuery} from "../../api-service/employees/employees.api";
+import type { DetailedEmployee } from "../../api-service/employees/types";
 
 function CreateEmployee() {
+  const [createEmployee] = useCreateEmployeeMutation();
+  const [updateEmployee] =  useUpdateEmployeeMutation();
+  const navigate = useNavigate();
+
   const roleOptions = [
     { value: "Developer", label: "Developer" },
     { value: "QA", label: "QA" },
-    { value: "Manager", label: "Manager" }
+    { value: "Manager", label: "Manager" },
+    { value: "UI", label: "UI"},
+    { value: "UX", label: "UX"}
   ];
 
   const statusOptions = [
@@ -23,38 +28,35 @@ function CreateEmployee() {
   ];
 
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const employeeIdFromUrl = searchParams.get("id");
   
-  const editableEmployee = employeeIdFromUrl 
-    ? employees.find(emp => emp.id == Number(employeeIdFromUrl)) 
-    : null;
+  const {data} = useGetEmployeeByIdQuery(employeeIdFromUrl as string)
     
-  const isEditing = !!editableEmployee;
+  const isEditing = !!data;
 
-  const [formData, setFormData] = useState <Employee>({
-    id: editableEmployee?.id || 0,
-    name: editableEmployee?.name || "",
-    employeeId: editableEmployee?.employeeId || "",
-    joiningDate: editableEmployee?.joiningDate || "",
-    role: editableEmployee?.role?.toLowerCase() || "",
-    status: editableEmployee?.status?.toLowerCase() || "",
-    experience: editableEmployee?.experience || "",
-    address: editableEmployee?.address || "",
-    city: editableEmployee?.city || "",
-    country: editableEmployee?.country|| "",
-    postalCode: editableEmployee?.postalCode|| "",
-    idProof: editableEmployee?.idProof||""
+  const [formData, setFormData] = useState <DetailedEmployee>({
+    id: data?.id || 0,
+    name: data?.name || "",
+    email: data?.email || "",
+    joiningDate: data?.joiningDate || "",
+    role: data?.role || "",
+    status: data?.status || "",
+    experience: data?.experience || "",
+    line1: data?.line1 || "",
+    city: data?.city || "",
+    country: data?.country|| "",
+    postalCode: data?.postalCode|| "",
+    idProof: data?.idProof||"",
+    password: data?.password||""
   });
 
   const [dateType, setDateType] = useState<"text" | "date">(
-    editableEmployee?.joiningDate ? "date" : "text"
+    data?.joiningDate ? "date" : "text"
   );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [uploadedFile, setUploadedFile] = useState <File|string|undefined>(editableEmployee?.idProof ? editableEmployee.idProof : undefined);
+  const [uploadedFile, setUploadedFile] = useState <File|string|undefined>(data?.idProof ? data.idProof : undefined);
 
   const handleFileUploaded = (file: File) => {
     setUploadedFile(file);
@@ -75,10 +77,35 @@ function CreateEmployee() {
     e.preventDefault();
     
     if (isEditing) {
-      console.log("Edited employee data", formData);
+      const result = updateEmployee({
+        id: formData.id,
+        name: formData.name,
+        email: formData.email,
+        role: formData.role
+      }).unwrap()
+      .then((data)=>{navigate("/dashboard")})
+      .catch((error)=>{alert(`Error: ${error}`)});
     } else {
-      dispatch(addEmployee(formData));
-      navigate("/dashboard");
+      const result = createEmployee({
+        name: formData.name,
+        email: formData.email,
+        age: 0,
+        address: {
+          line1: formData.line1,
+          city: formData.city,
+          postal_code: formData.postalCode,
+          country: formData.country,
+        },
+        pswd: formData.password,
+        role: formData.role,
+      })
+        .unwrap()
+        .then((data) => {
+          navigate("/dashboard");
+        })
+        .catch((error) => {
+          alert(`Error: ${error}`);
+        });
     }
   };
 
@@ -105,15 +132,14 @@ function CreateEmployee() {
 
             <Input
               type="text"
-              id="employeeID"
-              name="employeeId"
-              placeholder="Employee ID"
-              label="Employee ID"
+              id="email"
+              name="email"
+              placeholder="Email ID"
+              label="Email ID"
               containerClass="form-group"
               isRequired={true}
-              value={formData.employeeId}
+              value={formData.email}
               onChange={handleInputChange}
-              disabled={isEditing}
             />
 
             <div className="form-group">
@@ -161,7 +187,7 @@ function CreateEmployee() {
             />
 
             <Input
-              type="number"
+              type="text"
               id="experience"
               name="experience"
               placeholder="Experience"
@@ -176,9 +202,9 @@ function CreateEmployee() {
               <input
                 type="text"
                 id="address"
-                name="address"
+                name="line1"
                 placeholder="Address"
-                value={formData.address}
+                value={formData.line1}
                 onChange={handleInputChange}
               ></input>
               <div className="address-row">
@@ -249,6 +275,19 @@ function CreateEmployee() {
                 />
               </div>
             )}
+
+            {!isEditing && <Input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              label="Password"
+              containerClass="form-group"
+              isRequired={true}
+              value={formData.password}
+              onChange={handleInputChange}
+              disabled={isEditing}
+            />}
 
             <div className="button-group">
               <button type="submit" className="create-btn">

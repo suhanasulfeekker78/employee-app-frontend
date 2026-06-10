@@ -3,16 +3,8 @@ import DeleteIcon from "../../assets/delete_icon.png";
 import EditIcon from "../../assets/edit_icon.png"; 
 import "./EmployeeRow.css"
 import { useNavigate } from "react-router";
+import type {Employee} from "../../api-service/employees/types"
 
-interface Employee {
-  name: string;
-  id: number;
-  employeeId: string;
-  joiningDate: string;
-  role: string;
-  status: string;
-  experience: string;
-}
 
 interface EmployeeRowProps {
   employee: Employee;
@@ -31,7 +23,7 @@ const EmployeeRow: React.FC<EmployeeRowProps> = ({ employee, onEdit, onDelete })
   return (
     <div className="employee-row" onClick={handleClick}>
       <div className="cell cell-name">{employee.name}</div>
-      <div className="cell cell-id">{employee.employeeId}</div>
+      <div className="cell cell-id">{employee.email}</div>
       <div className="cell cell-date">{employee.joiningDate}</div>
       <div className="cell cell-role">{employee.role}</div>
       <div className="cell cell-status">

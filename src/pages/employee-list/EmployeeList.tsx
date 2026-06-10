@@ -6,14 +6,14 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import Chatbot from "../../components/chatbot/Chatbot";
 import DeletePopup from "../../components/delete/DeletePopup";
-import type { Employee } from "../../constants/data";
+import type { Employee } from "../../api-service/employees/types";
 
-import { useAppSelector} from "../../store/store";
-
+import { useGetEmployeesQuery,useDeleteEmployeeMutation } from "../../api-service/employees/employees.api";
 
 function EmployeeList() {
-  const employeeState=useAppSelector((state) => state.employee)
-  console.log(employeeState.employees)
+  const {data =[]} = useGetEmployeesQuery();
+	
+  const [deleteEmployee] = useDeleteEmployeeMutation();
 
   const [isChatbot,setChatbot]=useState(false);
   const navigate=useNavigate();
@@ -23,7 +23,7 @@ function EmployeeList() {
   }
   const tableHeaders: TableColumn[] = [
   { title: "Employee Name", class: "col col1" },
-  { title: "Employee ID",   class: "col col2" },
+  { title: "Email ID",   class: "col col2" },
   { title: "Joining Date",  class: "col col3" },
   { title: "Role",          class: "col col4" },
   { title: "Status",        class: "col col5" },
@@ -42,10 +42,8 @@ function EmployeeList() {
     setIsDeleteOpen(true);
   };
 
-  const confirmDelete = () => {
-    if (selectedId) {
-      console.log(`Deleting employee with ID: ${selectedId}`);
-    }
+  const confirmDelete = async () => {
+    const result = await deleteEmployee(selectedId);
     setIsDeleteOpen(false); 
   };
   return (
@@ -83,7 +81,7 @@ function EmployeeList() {
             ))}
           </div>
           <div className="table-body">
-            {employeeState.employees.map((employee:Employee) => (
+            {data.map((employee:Employee) => (
               <EmployeeRow
                 employee={employee}
                 onEdit={handleEdit}
