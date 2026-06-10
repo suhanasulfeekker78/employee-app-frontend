@@ -24,7 +24,7 @@ const EmployeeRow: React.FC<EmployeeRowProps> = ({ employee, onEdit, onDelete })
     <div className="employee-row" onClick={handleClick}>
       <div className="cell cell-name">{employee.name}</div>
       <div className="cell cell-id">{employee.email}</div>
-      <div className="cell cell-date">{employee.joiningDate}</div>
+      <div className="cell cell-date">{employee.joiningDate && employee.joiningDate.split('T')[0]}</div>
       <div className="cell cell-role">{employee.role}</div>
       <div className="cell cell-status">
         <span className={statusClassName}>{employee.status}</span>

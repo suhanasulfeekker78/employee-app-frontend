@@ -81,7 +81,10 @@ function CreateEmployee() {
         id: formData.id,
         name: formData.name,
         email: formData.email,
-        role: formData.role
+        role: formData.role,
+        joining_date: formData.joiningDate,
+        experience: formData.experience,
+        status: formData.status
       }).unwrap()
       .then((data)=>{navigate("/dashboard")})
       .catch((error)=>{alert(`Error: ${error}`)});
@@ -89,7 +92,9 @@ function CreateEmployee() {
       const result = createEmployee({
         name: formData.name,
         email: formData.email,
-        age: 0,
+        joiningDate: formData.joiningDate,
+        experience: formData.experience,
+        status: formData.status,
         address: {
           line1: formData.line1,
           city: formData.city,

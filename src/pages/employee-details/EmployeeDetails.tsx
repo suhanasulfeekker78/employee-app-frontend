@@ -43,7 +43,6 @@ function EmployeeDetails() {
           <div className="detail-row row-one">
             <DetailGroup label="Employee Name" value={data.name} />
             <DetailGroup label="Joining Date" value={data.joiningDate} />
-            <DetailGroup label="Experience" value={data.experience} />
             <DetailGroup label="Role" value={data.role} />
 
             <div className="data-group">

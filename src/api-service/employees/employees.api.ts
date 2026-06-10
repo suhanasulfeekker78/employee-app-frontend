@@ -1,21 +1,10 @@
 import employeeBaseApi from "../api";
-import type { Employee , DetailedEmployee, BackendEmployee, BackendDetailedEmployee} from "./types";
+import type { Employee , DetailedEmployee, BackendDetailedEmployee} from "./types";
 
 export const employeeApi = employeeBaseApi.injectEndpoints({
   endpoints: (builder) => ({
     getEmployees: builder.query<Employee[], void>({
       query: () => "/employee",
-      transformResponse: (response: BackendEmployee[]): Employee[] => {
-        return response.map((employee) => ({
-          id: employee.id,
-          name: employee.name,
-          email: employee.email,
-          joiningDate: "N/A",
-          role: employee.role,
-          status: "Active",
-          experience: "Not Specified",
-        }));
-      },
       providesTags: ["Employees"],
     }),
     getEmployeeById: builder.query<DetailedEmployee, string>({
@@ -28,13 +17,11 @@ export const employeeApi = employeeBaseApi.injectEndpoints({
           id: response.id,
           name: response.name,
           email: response.email,
-          joiningDate: response.created_at
-            ? response.created_at.split("T")[0]
-            : "N/A",
-          role: response.role || "Developer",
-          status: "Active",
-          experience: "Not Specified",
-          line1: primaryAddress?.line1 || "No Address Provided",
+          joiningDate: response.joiningDate ? response.joiningDate.split("T")[0] : "",
+          role: response.role,
+          status: response.status,
+          experience: response.experience ? response.experience: "",
+          line1: primaryAddress?.line1,
           city: primaryAddress?.city,
           country: primaryAddress?.country,
           postalCode: primaryAddress?.postal_code,

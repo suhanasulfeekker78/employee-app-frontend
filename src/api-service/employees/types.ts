@@ -1,11 +1,3 @@
-export interface BackendEmployee {
-  id: number;
-  name: string;
-  email: string;
-  age: number;
-  role: string;
-}
-
 export interface Employee {
   id: number;           
   email: string;    
@@ -33,6 +25,9 @@ export interface BackendDetailedEmployee {
   name: string;
   email: string;
   age: number;
+  joiningDate: string;
+  experience: string;
+  status: string;
   role: string;
   created_at: string;
   updated_at: string; 
