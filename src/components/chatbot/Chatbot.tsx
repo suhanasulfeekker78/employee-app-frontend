@@ -1,6 +1,6 @@
 import "./Chatbot.css";
-import HelpDeskIcon from "../../assets/help_desk_bubble.png";
-import SendVector from "../../assets/send_vector.png";
+import HelpDeskIcon from "@assets/help_desk_bubble.png";
+import SendVector from "@assets/send_vector.png";
 
 interface ChatbotProps {
   onClose: () => void;

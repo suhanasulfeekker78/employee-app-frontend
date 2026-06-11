@@ -1,12 +1,12 @@
 import "./CreateEmployee.css";
-import Input from "../../components/input/Input";
-import Select from "../../components/select/Select";
-import AttachVector from "../../assets/attach_files_vector.png";
+import Input from "@components/input/Input";
+import Select from "@components/select/Select";
+import AttachVector from "@assets/attach_files_vector.png";
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
-import UploadModal from "../../components/upload/UploadModal";
-import { useCreateEmployeeMutation , useUpdateEmployeeMutation, useGetEmployeeByIdQuery} from "../../api-service/employees/employees.api";
-import type { DetailedEmployee } from "../../api-service/employees/types";
+import UploadModal from "@components/upload/UploadModal";
+import { useCreateEmployeeMutation , useUpdateEmployeeMutation, useGetEmployeeByIdQuery} from "@api-service/employees/employees.api";
+import type { DetailedEmployee } from "@api-service/employees/types";
 
 function CreateEmployee() {
   const [createEmployee] = useCreateEmployeeMutation();

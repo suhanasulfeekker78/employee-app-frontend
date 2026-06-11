@@ -1,4 +1,4 @@
-import "../../pages/employee-details/EmployeeDetails.css"; 
+import "@pages/employee-details/EmployeeDetails.css"; 
 import "./LoadingFallback.css"
 
 function LoadingFallback() {

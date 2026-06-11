@@ -1,9 +1,9 @@
 import React from "react";
-import DeleteIcon from "../../assets/delete_icon.png"; 
-import EditIcon from "../../assets/edit_icon.png"; 
+import DeleteIcon from "@assets/delete_icon.png"; 
+import EditIcon from "@assets/edit_icon.png"; 
 import "./EmployeeRow.css"
 import { useNavigate } from "react-router";
-import type {Employee} from "../../api-service/employees/types"
+import type {Employee} from "@api-service/employees/types"
 
 
 interface EmployeeRowProps {

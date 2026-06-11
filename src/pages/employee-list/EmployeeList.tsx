@@ -1,12 +1,12 @@
 import "./EmployeeList.css"
-import HelpIcon from "../../assets/help_desk_icon.png"
-import CreateIcon from "../../assets/create_icon.png"
-import EmployeeRow from "../../components/employee-row/EmployeeRow";
+import HelpIcon from "@assets/help_desk_icon.png"
+import CreateIcon from "@assets/create_icon.png"
+import EmployeeRow from "@components/employee-row/EmployeeRow";
 import { useNavigate } from "react-router";
 import { useState } from "react";
-import Chatbot from "../../components/chatbot/Chatbot";
-import DeletePopup from "../../components/delete/DeletePopup";
-import type { Employee } from "../../api-service/employees/types";
+import Chatbot from "@components/chatbot/Chatbot";
+import DeletePopup from "@components/delete/DeletePopup";
+import type { Employee } from "@api-service/employees/types";
 
 import { useGetEmployeesQuery,useDeleteEmployeeMutation } from "../../api-service/employees/employees.api";
 

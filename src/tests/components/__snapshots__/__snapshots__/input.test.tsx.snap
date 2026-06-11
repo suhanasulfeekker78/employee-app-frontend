@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Input component > match snapshot 1`] = `
+<div>
+  <div>
+    <label
+      class="username-label"
+      for="username"
+    >
+      Username
+    </label>
+    <input
+      class="input-box"
+      id="username"
+      name="username"
+      type="text"
+      value="example"
+    />
+  </div>
+</div>
+`;

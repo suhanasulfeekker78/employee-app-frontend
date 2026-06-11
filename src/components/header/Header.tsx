@@ -1,5 +1,5 @@
 import "./Header.css";
-import KeyvalueLogo from "../../assets/keyvalue.png"
+import KeyvalueLogo from "@assets/keyvalue.png"
 
 const Header = () => {
   return (

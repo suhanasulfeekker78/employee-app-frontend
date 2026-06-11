@@ -1,5 +1,5 @@
 import "./Sidebar.css";
-import EmployeeListIcon from "../../assets/employee_list_icon.png";
+import EmployeeListIcon from "@assets/employee_list_icon.png";
 
 const Sidebar=()=>{
   return (

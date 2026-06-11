@@ -1,8 +1,7 @@
 import "./UploadModal.css"
-import CloseButton from "../../assets/close_button.png"
-import CloudIcon from "../../assets/upload_cloud_symbol.png"
-import UploadIcon from "../../assets/upload_file_icon.png"
-import { useRef } from "react";
+import CloseButton from "@assets/close_button.png"
+import CloudIcon from "@assets/upload_cloud_symbol.png"
+import UploadIcon from "@assets/upload_file_icon.png"
 
 interface UploadModalProps{
     onClose: () => void;

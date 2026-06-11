@@ -1,16 +1,16 @@
 import { createBrowserRouter } from "react-router";
-import Login from "../pages/login/Login";
-import Layout from "../components/layout/Layout"
-import NotFound from "../pages/NotFound";
-import ErrorHandler from "../pages/ErrorHandler"
-import ProtectedRoute from "../pages/ProtectedRoute";
+import Login from "@pages/login/Login";
+import Layout from "@components/layout/Layout"
+import NotFound from "@pages/NotFound";
+import ErrorHandler from "@pages/ErrorHandler"
+import ProtectedRoute from "@pages/ProtectedRoute";
 import React, { Suspense } from "react";
-import LoadingFallback from "../components/loading/LoadingFallback";
-import ErrorBoundary from "../components/ErrorBoundary";
+import LoadingFallback from "@components/loading/LoadingFallback";
+import ErrorBoundary from "@components/ErrorBoundary";
 
-const EmployeeDetails = React.lazy(()=>import("../pages/employee-details/EmployeeDetails"));
-const CreateEmployee = React.lazy(()=>import("../pages/create-employee/CreateEmployee"));
-const EmployeeList = React.lazy(()=>import("../pages/employee-list/EmployeeList"))
+const EmployeeDetails = React.lazy(()=>import("@pages/employee-details/EmployeeDetails"));
+const CreateEmployee = React.lazy(()=>import("@pages/create-employee/CreateEmployee"));
+const EmployeeList = React.lazy(()=>import("@pages/employee-list/EmployeeList"))
 
 const Router = createBrowserRouter([
   {

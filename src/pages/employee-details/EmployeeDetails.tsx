@@ -1,9 +1,9 @@
 import "./EmployeeDetails.css";
-import EditIcon from "../../assets/edit_button.png";
-import DetailGroup from "../../components/detailgroup/DetailGroup";
+import EditIcon from "@assets/edit_button.png";
+import DetailGroup from "@components/detailgroup/DetailGroup";
 import { useParams, useNavigate} from "react-router";
-import FileIcon from "../../assets/small-file-icon.png"
-import { useGetEmployeeByIdQuery } from "../../api-service/employees/employees.api";
+import FileIcon from "@assets/small-file-icon.png"
+import { useGetEmployeeByIdQuery } from "@api-service/employees/employees.api";
 
 function EmployeeDetails() {
   const {id}=useParams();

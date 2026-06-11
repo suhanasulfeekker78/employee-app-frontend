@@ -7,6 +7,13 @@
     "types": ["vite/client"],
     "skipLibCheck": true,
 
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@api-service/*": ["./src/api-service/*"]
+    },
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,

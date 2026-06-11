@@ -1,10 +1,11 @@
 // import Input from "../../components/input/Input";
 import "./Login.css";
-import KeyvalueLogo from "../../assets/keyvalue.png" 
-import LoginGraphics from "../../assets/login_graphics.png"
+import KeyvalueLogo from "@assets/keyvalue.png" 
+import LoginGraphics from "@assets/login_graphics.png"
 import { useState} from "react";
 import { useNavigate } from "react-router";
-import { useLoginMutation } from "../../api-service/auth/login.api";
+import { useLoginMutation } from "@api-service/auth/login.api";
+import Input from "@components/input/Input";
 
 function Login() {
   const [login,{isLoading}] = useLoginMutation();
@@ -13,7 +14,7 @@ function Login() {
   const [email,setEmail]=useState("")
   const [pw,setPassword]=useState("")
   const emailError=email && !email.includes('@')?"Email must contain @" : null;
-  const pswdError= (pw && pw.length <7 )? "Password must be 8 letters": null;
+  const pswdError= (pw && pw.length <7 )? "Password must be 7 letters": null;
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (!emailError && !pswdError) {
@@ -52,34 +53,28 @@ function Login() {
               ></img>
             </div>
             <form className="login-form" onSubmit={handleSubmit}>
-              {/* <Input type="text" id="username" placeholder="" name="username" label="Username" labelClass="username-label"/>
-                <Input type="password" id="password" name="password" placeholder="Password"/> */}
-              <div>
-                <label htmlFor="username" className="username-label">
-                  Username
-                </label>
-                <input
-                  type="text"
-                  id="username"
-                  className="input-box"
-                  name="username"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                {emailError && <p className="error">{emailError}</p>}
-              </div>
-              <div>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  className="input-box"
-                  placeholder="Password"
-                  value={pw}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                {pswdError && <p className="error">{pswdError}</p>}
-              </div>
+              <Input
+                type="text"
+                id="username"
+                name="username"
+                label="Username"
+                labelClass="username-label"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                isRequired={true}
+              />
+              {emailError && <p className="error">{emailError}</p>}
+
+              <Input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+                value={pw}
+                onChange={(e) => setPassword(e.target.value)}
+                isRequired={true}
+              />
+              {pswdError && <p className="error">{pswdError}</p>}
               <input
                 type="submit"
                 value="Login"

@@ -1,6 +1,6 @@
 import "./Splash.css"
-import Header from "../../components/header/Header";
-import Image from "../../assets/splash_image.png"
+import Header from "@components/header/Header";
+import Image from "@assets/splash_image.png"
 
 function Slash(){
     return(
